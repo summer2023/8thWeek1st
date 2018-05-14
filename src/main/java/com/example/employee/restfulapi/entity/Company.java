@@ -1,47 +1,52 @@
-package com.example.employee.restfulapi.entity;
+package com.example.employee.entity;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.HashSet;
-import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
 public class Company {
-    @Id
-    @GeneratedValue
-    private Long id;
-    private String companyName;
-    private Integer employeesNumber;
+        @Id
+        @GeneratedValue
+        private Integer id;
 
-    public Company() {
-    }
+        @Column(nullable = false)
+        private String companyName;
 
-    public Company(String companyName, Integer employeesNumber) {
-        this.companyName = companyName;
-        this.employeesNumber = employeesNumber;
-    }
+        @Column
+        private String employeesNumber;
 
-    public Long getId() {
-        return id;
-    }
+        public Company() {
+        }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+        public Company(Integer id, String companyName,String employeesNumber ) {
+            this.id = id;
+            this.companyName = companyName;
+            this.employeesNumber = employeesNumber;
+        }
 
-    public String getCompanyName() {
-        return companyName;
-    }
+        public Integer getId() {
+            return id;
+        }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
+        public void setId(Integer id) {
+            this.id = id;
+        }
 
-    public Integer getEmployeesNumber() {
-        return employeesNumber;
-    }
+        public String getCompanyName() {
+            return companyName;
+        }
 
-    public void setEmployeesNumber(Integer employeesNumber) {
-        this.employeesNumber = employeesNumber;
+        public void setCompanyName(String companyName) {
+            this.companyName = companyName;
+        }
+
+        public String getEmployeesNumber() {
+            return employeesNumber;
+        }
+
+        public void setEmployeesNumber(String employeesNumber) {
+            this.employeesNumber = employeesNumber;
+        }
     }
-}
