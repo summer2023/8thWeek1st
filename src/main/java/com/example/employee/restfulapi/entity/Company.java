@@ -1,4 +1,4 @@
-package com.example.employee.entity;
+package com.example.employee. restfulapi.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
