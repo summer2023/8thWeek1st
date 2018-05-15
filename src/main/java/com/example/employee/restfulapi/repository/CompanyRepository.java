@@ -17,10 +17,10 @@ import java.util.List;
 public interface CompanyRepository extends JpaRepository<Company, Long> {
     List<Company> findAll();
 
-    Company findById(Long id);
+    Company findById(Integer id);
 
     @Query("select e from Employee e where e.companyId=?1")
-    List<Employee> findEmployeeByCompanyId(Long id);
+    List<Employee> findEmployeeByCompanyId(Integer id);
 
     Page<Company> findAll(Pageable pageable);
 
@@ -29,8 +29,8 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
     @Modifying
     @Transactional
     @Query("update Company c set c.companyName = ?2, c.employeesNumber = ?3 where c.id = ?1")
-    int updateById(Long id, String companyName, String employeesNumber);
+    int updateById(Integer id, String companyName, String employeesNumber);
 
     @Transactional
-    void deleteById(Long id);
+    void deleteById(Integer id);
 }

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
+@RequestMapping("/companies")
 public class CompanyController {
     @Autowired
     private CompanyRepository companyRepository;
@@ -18,12 +20,14 @@ public class CompanyController {
     public @ResponseBody Iterable<Company> findAllCompanys(){return companyRepository.findAll();}
 
     @GetMapping(value = "/{id}")
-    public Company getCompany(@PathVariable Long id) {
+    public Company getCompany(@PathVariable Integer id) {
         return companyRepository.findById(id);
     }
 
-    @GetMapping(value = "/{id}")
-    public List<Employee> getEmployee(@PathVariable Long id){return companyRepository.findEmployeeByCompanyId(id);}
+    @GetMapping(value = "/{id}/employees")
+    public List<Employee> getEmployees(@PathVariable Integer id) {
+        return companyRepository.findEmployeeByCompanyId(id);
+    }
 
     @GetMapping(value = "/page/{page}/pageSize/{pageSize}")
     public Page<Company> getCompanys(@PathVariable int page, @PathVariable int pageSize) {
@@ -36,13 +40,13 @@ public class CompanyController {
     }
 
     @PutMapping(value = "/{id}")
-    public Company updateCompany(@PathVariable Long id, @ModelAttribute Company company) {
+    public Company updateCompany(@PathVariable Integer id, @ModelAttribute Company company) {
         companyRepository.updateById(id,company.getCompanyName(),company.getEmployeesNumber());
         return companyRepository.findById(id);
     }
 
     @DeleteMapping(value = "/{id}")
-    public void deleteEmployee(@PathVariable Long id) {
+    public void deleteEmployee(@PathVariable Integer id) {
         companyRepository.deleteById(id);
     }
 }
